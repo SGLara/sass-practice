@@ -1,0 +1,81 @@
+// VARIABLES
+$color-fondo: #cccccc;
+$color-secundario: rgb(131, 0, 0);
+
+// MODULES
+@use 'base';
+@use 'header';
+
+body {
+    background-color: $color-fondo;
+}
+
+p {
+    color: $color-secundario;
+}
+
+//NESTING
+.box {
+    border: 1px solid black;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+
+    h1 {
+        color: blue;
+    }
+
+    p {
+        color: green;
+    }
+
+    .info {
+        font-size: 10px;
+
+        .author {
+            font-size: 15px;
+            color: orange;
+        }
+    }
+}
+
+// --------------------------------------------------------
+// MIXINS | FUNCTIONS
+@mixin createBorder($color, $size, $shadow) {
+    border: $size solid $color;
+
+    border: {
+        radius: $size;
+    }
+
+    box-shadow: 0 0 $size $shadow;
+}
+
+.box {
+    @include createBorder(red, 10px, black);
+}
+
+.list {
+    @include createBorder(green, 20px, yellow);
+}
+
+// --------------------------------------------------------
+// HERITAGE
+%alerta-normal {
+    border: 1px solid gray;
+    background-color: #cccccc;
+    color: white;
+    padding: 10px;
+    width: 100%;
+}
+
+.alert {
+    @extend %alerta-normal;
+}
+
+// OPERATORS
+h1 {
+    font-size: 20px + 5px - 1px;
+}
